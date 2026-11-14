@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+textures/
+comfy_outputs/
+*.blend1
+.DS_Store
+Thumbs.db

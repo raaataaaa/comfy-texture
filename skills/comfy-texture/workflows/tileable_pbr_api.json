@@ -1,0 +1,21 @@
+{
+  "1": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": "sd_xl_base_1.0.safetensors"}, "_meta": {"title": "Load Checkpoint"}},
+  "2": {"class_type": "SeamlessTile", "inputs": {"model": ["1", 0], "tiling": "enable", "copy_model": "Modify in place"}, "_meta": {"title": "Seamless Tile"}},
+  "3": {"class_type": "MakeCircularVAE", "inputs": {"vae": ["1", 2], "tiling": "enable", "copy_vae": "Modify in place"}, "_meta": {"title": "Make Circular VAE"}},
+  "4": {"class_type": "CLIPTextEncode", "inputs": {"text": "weathered oak wooden planks, top-down orthographic view, flat even diffuse lighting, no shadows, seamless tileable texture, highly detailed surface", "clip": ["1", 1]}, "_meta": {"title": "Positive Prompt"}},
+  "5": {"class_type": "CLIPTextEncode", "inputs": {"text": "perspective, vanishing point, cast shadow, specular highlight, objects, border, frame, text, watermark, vignette, blurry", "clip": ["1", 1]}, "_meta": {"title": "Negative Prompt"}},
+  "6": {"class_type": "EmptyLatentImage", "inputs": {"width": 1024, "height": 1024, "batch_size": 1}, "_meta": {"title": "Empty Latent"}},
+  "7": {"class_type": "KSampler", "inputs": {"model": ["2", 0], "seed": 0, "steps": 30, "cfg": 7, "sampler_name": "dpmpp_2m", "scheduler": "karras", "positive": ["4", 0], "negative": ["5", 0], "latent_image": ["6", 0], "denoise": 1}, "_meta": {"title": "KSampler"}},
+  "8": {"class_type": "VAEDecode", "inputs": {"samples": ["7", 0], "vae": ["3", 0]}, "_meta": {"title": "VAE Decode"}},
+  "9": {"class_type": "SaveImage", "inputs": {"images": ["8", 0], "filename_prefix": "pbr/texture"}, "_meta": {"title": "texture"}},
+  "10": {"class_type": "OffsetImage", "inputs": {"pixels": ["8", 0], "x_percent": 50, "y_percent": 50}, "_meta": {"title": "Offset Image"}},
+  "11": {"class_type": "PreviewImage", "inputs": {"images": ["10", 0]}, "_meta": {"title": "seam_check"}},
+  "12": {"class_type": "ChordLoadModel", "inputs": {"ckpt_name": "chord_v1.safetensors"}, "_meta": {"title": "Chord - Load Model"}},
+  "13": {"class_type": "ChordMaterialEstimation", "inputs": {"chord_model": ["12", 0], "image": ["8", 0]}, "_meta": {"title": "Chord - Material Estimation"}},
+  "14": {"class_type": "ChordNormalToHeight", "inputs": {"normal": ["13", 1]}, "_meta": {"title": "Chord - Normal to Height"}},
+  "15": {"class_type": "SaveImage", "inputs": {"images": ["13", 0], "filename_prefix": "pbr/basecolor"}, "_meta": {"title": "basecolor"}},
+  "16": {"class_type": "SaveImage", "inputs": {"images": ["13", 1], "filename_prefix": "pbr/normal"}, "_meta": {"title": "normal"}},
+  "17": {"class_type": "SaveImage", "inputs": {"images": ["13", 2], "filename_prefix": "pbr/roughness"}, "_meta": {"title": "roughness"}},
+  "18": {"class_type": "SaveImage", "inputs": {"images": ["13", 3], "filename_prefix": "pbr/metalness"}, "_meta": {"title": "metalness"}},
+  "19": {"class_type": "SaveImage", "inputs": {"images": ["14", 0], "filename_prefix": "pbr/height"}, "_meta": {"title": "height"}}
+}

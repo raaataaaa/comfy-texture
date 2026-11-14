@@ -1,0 +1,48 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {"ckpt_name": "sd_xl_base_1.0.safetensors"},
+    "_meta": {"title": "Load Checkpoint"}
+  },
+  "2": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {"text": "a red ceramic teapot on a rustic wooden table beside a sunlit window, soft morning light, photorealistic, highly detailed", "clip": ["1", 1]},
+    "_meta": {"title": "Positive Prompt"}
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {"text": "lowres, blurry, out of focus, deformed, watermark, text, logo, signature", "clip": ["1", 1]},
+    "_meta": {"title": "Negative Prompt"}
+  },
+  "4": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {"width": 1024, "height": 1024, "batch_size": 1},
+    "_meta": {"title": "Empty Latent"}
+  },
+  "5": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": ["1", 0],
+      "seed": 42,
+      "steps": 25,
+      "cfg": 7,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "positive": ["2", 0],
+      "negative": ["3", 0],
+      "latent_image": ["4", 0],
+      "denoise": 1
+    },
+    "_meta": {"title": "KSampler"}
+  },
+  "6": {
+    "class_type": "VAEDecode",
+    "inputs": {"samples": ["5", 0], "vae": ["1", 2]},
+    "_meta": {"title": "VAE Decode"}
+  },
+  "7": {
+    "class_type": "SaveImage",
+    "inputs": {"images": ["6", 0], "filename_prefix": "sdxl_t2i"},
+    "_meta": {"title": "image"}
+  }
+}
