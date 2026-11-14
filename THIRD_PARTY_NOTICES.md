@@ -32,7 +32,7 @@ SOFTWARE.
 
 This repository does not include any model weights or custom node code. Download them from their own sources and follow their licenses:
 
-- CHORD model and ComfyUI-Chord (Ubisoft): research-only license (Ubisoft Machine Learning License)
+- CHORD model and ComfyUI-Chord (Ubisoft): Ubisoft Machine Learning License (Research-Only - Copyleft); commercial use is prohibited
 - ComfyUI-seamless-tiling (spinagon): GPL-3.0
 - Stable Diffusion XL, Z-Image Turbo, FLUX.2 [klein] 4B: see each model card
 

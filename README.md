@@ -121,7 +121,7 @@ python run_comfy.py workflows/tileable_pbr_api.json \
 ## ライセンス
 
 - このリポジトリのスクリプト、ワークフロー、文書は MIT です（[LICENSE](LICENSE)）。公式テンプレートをもとにした部分は [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) を見てください。
-- モデルとカスタムノードは入っていません。それぞれのライセンスに従ってください。特に **CHORD は研究用途限定**（Ubisoft Machine Learning License）です。作ったテクスチャを使った作品を公開・販売するときは、条件を確かめてください。
+- モデルとカスタムノードは入っていません。それぞれのライセンスに従ってください。特に **CHORD は研究用途限定**（Ubisoft Machine Learning License (Research-Only - Copyleft)）で、商用利用は禁止されています。作ったテクスチャを使った作品を公開・販売するときは、条件を確かめてください。
 - `docs/images/` のサンプル画像には、CHORD の出力が含まれます。
 
 ## 作業の記録
