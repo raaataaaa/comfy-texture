@@ -102,6 +102,10 @@ python run_comfy.py workflows/tileable_pbr_api.json \
 
 ## ワークフロー
 
+![tileable_pbr_api.json を ComfyUI で開いたところ](docs/images/workflow.png)
+
+`.json` のファイルを ComfyUI の画面にドラッグ＆ドロップすると、ワークフローとして開けます（ComfyUI 0.45.3、フロントエンド 1.58.5 で確認）。
+
 | ファイル | 中身 | 時間 |
 |---|---|---|
 | `tileable_pbr_api.json` | SDXL（30ステップ、dpmpp_2m karras、CFG 7）＋継ぎ目なし → CHORD で PBR マップ5枚 | 14.2秒 |
